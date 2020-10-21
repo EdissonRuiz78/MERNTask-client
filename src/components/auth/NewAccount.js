@@ -79,7 +79,7 @@ const NewAccount = () => {
             />
           </div>
         </form>
-        <p>Or</p>
+        <p className="pseudo">Or</p>
         <Link to={"/"} className="link-account">
           Log In
         </Link>

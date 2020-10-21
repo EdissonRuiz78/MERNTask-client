@@ -24,7 +24,6 @@ body {
   font-size: 1.6rem;
   font-family: var(--textFont);
 }
-
 h1,
 h2 {
   font-family: var(--headingFont);
@@ -48,14 +47,6 @@ p {
   text-align: center;
   color: var(--black);
   margin-top: 2rem;
-}
-p::after {
-  content: "";
-  width: 100px;
-  height: 4px;
-  background-color: var(--gray2);
-  display: block;
-  margin: auto;
 }
 ul {
   list-style: none;
@@ -100,7 +91,7 @@ a {
 }
 .btn-blank {
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   display: block;
   background-color: transparent;
 }
@@ -113,7 +104,7 @@ a {
 
   aside {
     background-color: var(--white);
-    flex: 0 0 300px;
+    flex: 0 0 400px;
   }
   .seccion-principal {
     flex: 1;
@@ -124,7 +115,6 @@ a {
 aside {
   padding: 3rem;
 }
-
 .form-new-project {
   margin-top: 6rem;
 }
@@ -152,7 +142,7 @@ aside {
   display: flex;
   justify-content: space-between;
   background-color: var(--gray2);
-  padding: 4rem;
+  padding: 3rem;
 }
 .user-name {
   color: var(--white);
@@ -198,12 +188,10 @@ aside {
 .container-task {
   padding: 4rem;
 }
-
 .list-task {
   max-width: 600px;
   margin: 0 auto;
 }
-
 .task {
   display: flex;
   justify-content: space-between;
@@ -259,8 +247,7 @@ aside {
 .message:hover {
   cursor: default;
 }
-.succes,
-.right {
+.success {
   background-color: rgba(154, 252, 154, 0.3);
   color: var(--gray3);
 }
@@ -274,7 +261,6 @@ aside {
   background-color: rgb(170, 0, 0);
   color: var(--white);
 }
-
 .task-enter,
 .project-enter {
   opacity: 0;
@@ -293,7 +279,6 @@ aside {
   opacity: 0;
   transition: opacity 200ms;
 }
-
 .form-user {
   background-color: var(--gray2);
   height: 100vh;
@@ -302,7 +287,6 @@ aside {
   align-items: center;
   justify-content: center;
 }
-
 .container-form {
   padding: 5rem 3rem;
   max-width: 500px;
@@ -310,7 +294,6 @@ aside {
   background-color: var(--white);
   border-radius: 1rem;
 }
-
 .input-form {
   display: flex;
   margin-bottom: 2rem;
@@ -335,6 +318,14 @@ aside {
   display: block;
   text-align: center;
   opacity: 0.7;
+}
+.pseudo::after {
+  content: "";
+  width: 100px;
+  height: 4px;
+  background-color: var(--gray2);
+  display: block;
+  margin: auto;
 }
 .alert {
   position: fixed;

@@ -55,7 +55,7 @@ const Login = () => {
             />
           </div>
         </form>
-        <p>Or</p>
+        <p className="pseudo">Or</p>
         <Link to={"/NewAccount"} className="link-account">
           Create An Account
         </Link>

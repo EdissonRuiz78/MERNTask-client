@@ -1,6 +1,9 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
+import ProjectContext from "../../context/projects/ProjectContext";
 
 const NewProject = () => {
+  const projectContext = useContext(ProjectContext);
+  const { form, showForm } = projectContext;
   const [project, updateProject] = useState({
     name: "",
   });
@@ -18,26 +21,36 @@ const NewProject = () => {
     e.preventDefault();
   };
 
+  const handleOnClick = () => {
+    showForm();
+  };
+
   return (
     <Fragment>
-      <button className="btn btn-primary btn-block" type="button">
+      <button
+        className="btn btn-primary btn-block"
+        type="button"
+        onClick={handleOnClick}
+      >
         New Project
       </button>
-      <form className="form-new-project" onSubmit={handleOnSubmit}>
-        <input
-          className="input-text"
-          type="text"
-          placeholder="Project Name"
-          name="name"
-          value={name}
-          onChange={handleOnChange}
-        />
-        <input
-          className="btn btn-primary btn-block"
-          type="submit"
-          value="Add Project"
-        />
-      </form>
+      {form ? (
+        <form className="form-new-project" onSubmit={handleOnSubmit}>
+          <input
+            className="input-text"
+            type="text"
+            placeholder="Project Name"
+            name="name"
+            value={name}
+            onChange={handleOnChange}
+          />
+          <input
+            className="btn btn-primary btn-block"
+            type="submit"
+            value="Add Project"
+          />
+        </form>
+      ) : null}
     </Fragment>
   );
 };

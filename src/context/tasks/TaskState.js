@@ -1,7 +1,13 @@
 import React, { useReducer } from "react";
 import TaskContext from "./TaskContext";
 import TaskReducer from "./TaskReducer";
-import { GET_TASKS, ADD_TASK, TASK_VALIDATION, REMOVE_TASK } from "../../types";
+import {
+  GET_TASKS,
+  ADD_TASK,
+  TASK_VALIDATION,
+  REMOVE_TASK,
+  TASK_STATE,
+} from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
@@ -40,10 +46,19 @@ const TaskState = (props) => {
     });
   };
 
+  //Function to remove task
   const removeTask = (taskId) => {
     dispatch({
       type: REMOVE_TASK,
       payload: taskId,
+    });
+  };
+
+  //Function to change state of taks
+  const taskState = (task) => {
+    dispatch({
+      type: TASK_STATE,
+      payload: task,
     });
   };
 
@@ -57,6 +72,7 @@ const TaskState = (props) => {
         addTask,
         errorTask,
         removeTask,
+        taskState,
       }}
     >
       {props.children}

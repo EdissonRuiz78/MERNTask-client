@@ -12,7 +12,7 @@ const Tasks = ({ task }) => {
 
   //Context from task
   const taskContext = useContext(TaskContext);
-  const { removeTask, getTasks } = taskContext;
+  const { removeTask, getTasks, taskState } = taskContext;
 
   //Destructuring state from props
   const { taskId, name, state } = task;
@@ -23,16 +23,34 @@ const Tasks = ({ task }) => {
     getTasks(project.id);
   };
 
+  //Function to change state of task
+  const handleOnChange = (task) => {
+    if (task.state) {
+      task.state = false;
+    } else {
+      task.state = true;
+    }
+    taskState(task);
+  };
+
   return (
     <li className="task shadow">
       <p>{name}</p>
       <div className="state">
         {state ? (
-          <button className="success" type="button">
+          <button
+            className="success"
+            type="button"
+            onClick={() => handleOnChange(task)}
+          >
             Success
           </button>
         ) : (
-          <button className="incomplete" type="button">
+          <button
+            className="incomplete"
+            type="button"
+            onClick={() => handleOnChange(task)}
+          >
             Incomplete
           </button>
         )}

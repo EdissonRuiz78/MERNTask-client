@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  //State component
   const [user, updateUser] = useState({
     email: "",
     password: "",
   });
 
+  //Destructuring the state component
   const { email, password } = user;
 
+  //Saving data of form
   const handleOnChange = (e) => {
     updateUser({
       ...user,

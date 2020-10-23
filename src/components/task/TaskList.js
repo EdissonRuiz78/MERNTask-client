@@ -1,26 +1,43 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
+import ProjectContext from "../../context/projects/ProjectContext";
+import TaskContext from "../../context/tasks/TaskContext";
 import Tasks from "./Tasks";
 
 const TaskList = () => {
-  const tasks = [
-    { name: "Plataform", state: true },
-    { name: "Plataform2", state: true },
-    { name: "Plataform3", state: false },
-    { name: "Plataform4", state: true },
-  ];
+  //Context form Projects
+  const projectContext = useContext(ProjectContext);
+  const { currentproject, removeProject } = projectContext;
+
+  //Context form Tasks
+  const taskContext = useContext(TaskContext);
+  const { projecttask } = taskContext;
+
+  //No project active ? don´t show anything
+  if (!currentproject) {
+    return <h2>Pick a Project</h2>;
+  }
+
+  //Array destructuring to show current project
+  const [project] = currentproject;
+
+  //Function to remove a project
+  const handleOnClick = () => {
+    removeProject(project.id);
+  };
+
   return (
     <Fragment>
-      <h2>Project: React</h2>
+      <h2>Project: {project.name}</h2>
       <ul className="list-task">
-        {tasks.length === 0 ? (
+        {projecttask.length === 0 ? (
           <li className="task">
             <p>No task</p>
           </li>
         ) : (
-          tasks.map((task) => <Tasks task={task} />)
+          projecttask.map((task) => <Tasks key={task.taskId} task={task} />)
         )}
       </ul>
-      <button className="btn btn-primary" type="button">
+      <button className="btn btn-primary" type="button" onClick={handleOnClick}>
         Remove Project &times;
       </button>
     </Fragment>

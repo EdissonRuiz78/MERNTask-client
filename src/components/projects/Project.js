@@ -1,18 +1,33 @@
 import React, { useContext } from "react";
 import ProjectContext from "../../context/projects/ProjectContext";
+import TaskContext from "../../context/tasks/TaskContext";
 
 const Project = ({ project }) => {
+  //Context from Projects
   const projectContext = useContext(ProjectContext);
   const { currentProject } = projectContext;
-  const { name, id } = project;
 
-  const handleOnClick = () => {
+  //Context from Tasks
+  const taskContext = useContext(TaskContext);
+  const { getTasks } = taskContext;
+
+  //Destructuring project from props
+  const { name } = project;
+
+  //Function to select an active current project
+  //and get task from active project
+  const handleOnClick = (id) => {
     currentProject(id);
+    getTasks(id);
   };
 
   return (
     <li>
-      <button className="btn btn-blank" type="button" onClick={handleOnClick}>
+      <button
+        className="btn btn-blank"
+        type="button"
+        onClick={() => handleOnClick(project.id)}
+      >
         {name}
       </button>
     </li>

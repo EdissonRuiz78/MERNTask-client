@@ -20,7 +20,7 @@ const NewProject = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
-    if (name === "") {
+    if (name.trim() === "") {
       showError();
       return;
     }

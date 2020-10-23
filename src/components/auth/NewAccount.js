@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const NewAccount = () => {
+  //State component
   const [user, updateUser] = useState({
     name: "",
     email: "",
@@ -9,8 +10,10 @@ const NewAccount = () => {
     confirmPassword: "",
   });
 
+  //Destructuring the state component
   const { name, email, password, confirmPassword } = user;
 
+  //Saving data of form
   const handleOnChange = (e) => {
     updateUser({
       ...user,

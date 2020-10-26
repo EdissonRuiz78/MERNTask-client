@@ -10,3 +10,5 @@ export const ADD_TASK = "ADD_TASK";
 export const TASK_VALIDATION = "TASK_VALIDATION";
 export const REMOVE_TASK = "REMOVE_TASK";
 export const TASK_STATE = "TASK_STATE";
+export const TASK_EDIT = "TASK_EDIT";
+export const TASK_UPDATE = "TASK_UPDATE";

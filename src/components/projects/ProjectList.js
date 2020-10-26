@@ -11,6 +11,7 @@ const ProjectList = () => {
   //Initial projects
   useEffect(() => {
     getProjects();
+    // eslint-disable-next-line
   }, []);
 
   if (projects.length === 0) {

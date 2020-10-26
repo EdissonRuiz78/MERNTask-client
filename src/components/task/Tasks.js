@@ -12,7 +12,7 @@ const Tasks = ({ task }) => {
 
   //Context from task
   const taskContext = useContext(TaskContext);
-  const { removeTask, getTasks, taskState } = taskContext;
+  const { removeTask, getTasks, taskState, taskEdit } = taskContext;
 
   //Destructuring state from props
   const { taskId, name, state } = task;
@@ -31,6 +31,11 @@ const Tasks = ({ task }) => {
       task.state = true;
     }
     taskState(task);
+  };
+
+  //Function to edit tasks
+  const handleOnEdit = (task) => {
+    taskEdit(task);
   };
 
   return (
@@ -56,7 +61,11 @@ const Tasks = ({ task }) => {
         )}
       </div>
       <div className="actions">
-        <button className="btn btn-primary" type="button">
+        <button
+          className="btn btn-primary"
+          type="button"
+          onClick={() => handleOnEdit(task)}
+        >
           Edit
         </button>
         <button

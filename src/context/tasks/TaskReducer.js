@@ -1,10 +1,11 @@
-import { useState } from "react";
 import {
   GET_TASKS,
   ADD_TASK,
   TASK_VALIDATION,
   REMOVE_TASK,
   TASK_STATE,
+  TASK_EDIT,
+  TASK_UPDATE,
 } from "../../types/";
 
 export default (state, action) => {
@@ -36,12 +37,20 @@ export default (state, action) => {
         tasks: state.tasks.filter((task) => task.taskId !== action.payload),
       };
 
+    case TASK_UPDATE:
     case TASK_STATE:
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.taskId === action.payload.id ? action.payload : task
+          task.taskId === action.payload.taskId ? action.payload : task
         ),
+        currenttask: null,
+      };
+
+    case TASK_EDIT:
+      return {
+        ...state,
+        currenttask: action.payload,
       };
 
     default:

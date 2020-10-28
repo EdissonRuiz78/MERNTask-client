@@ -329,10 +329,7 @@ aside {
 }
 .alert {
   position: fixed;
-  top: 0;
-  left: 0;
   padding: 1rem 3rem;
-  border-radius: 1rem;
   font-family: var(--headingFont);
   font-weight: 600;
   text-transform: uppercase;

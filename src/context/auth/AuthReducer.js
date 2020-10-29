@@ -21,21 +21,22 @@ export default (state, action) => {
 
     case WARNING_REGISTER:
     case WARNING_LOGIN:
+    case LOGOUT:
       localStorage.removeItem("token");
       return {
         ...state,
         token: null,
+        auth: null,
+        user: null,
         msg: action.payload,
       };
 
     case GET_USER:
       return {
         ...state,
+        auth: true,
         user: action.payload,
       };
-
-    case LOGOUT:
-      return {};
 
     default:
       return state;

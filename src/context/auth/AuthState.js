@@ -92,6 +92,12 @@ const AuthState = ({ children }) => {
     }
   };
 
+  const userLogout = async () => {
+    dispatch({
+      type: LOGOUT,
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -101,6 +107,8 @@ const AuthState = ({ children }) => {
         msg: state.msg,
         createUser,
         userLogin,
+        getUser,
+        userLogout,
       }}
     >
       {children}

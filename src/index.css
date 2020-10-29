@@ -95,6 +95,9 @@ a {
   display: block;
   background-color: transparent;
 }
+.log-out {
+  color: var(--white);
+}
 
 @media (min-width: 768px) {
   .container-app {
@@ -141,6 +144,7 @@ aside {
 .app-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--gray2);
   padding: 3rem;
 }

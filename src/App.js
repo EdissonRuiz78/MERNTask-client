@@ -10,6 +10,13 @@ import TaskState from "./context/tasks/TaskState";
 import AlertState from "./context/alerts/AlertState";
 import AuthState from "./context/auth/AuthState";
 
+import authToken from "./config/authToken";
+
+const token = localStorage.getItem("token");
+if (token) {
+  authToken(token);
+}
+
 function App() {
   return (
     <ProjectState>

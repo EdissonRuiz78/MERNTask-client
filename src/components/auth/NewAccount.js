@@ -1,11 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import AlertContext from "../../context/alerts/AlertContext";
+import AutContext from "../../context/auth/AuthContext";
 
-const NewAccount = () => {
+const NewAccount = (props) => {
   //State from alerts
   const alertContext = useContext(AlertContext);
   const { alert, showAlert } = alertContext;
+
+  const autContext = useContext(AutContext);
+  const { msg, auth, createUser } = autContext;
+
+  useEffect(() => {
+    if (auth) {
+      props.history.push("/Projects");
+    }
+
+    if (msg) {
+      showAlert(msg.msg, msg.category);
+    }
+  }, [msg, auth, props.history]);
 
   //State component
   const [user, updateUser] = useState({
@@ -49,6 +63,11 @@ const NewAccount = () => {
       showAlert("Password does not match", "alert-error");
       return;
     }
+    createUser({
+      name,
+      email,
+      password,
+    });
   };
 
   return (

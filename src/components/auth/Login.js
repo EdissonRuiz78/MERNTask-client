@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
+import AlertContext from "../../context/alerts/AlertContext";
+import AuthContext from "../../context/auth/AuthContext";
 
-const Login = () => {
+const Login = (props) => {
   //State component
   const [user, updateUser] = useState({
     email: "",
     password: "",
   });
+
+  const alertContext = useContext(AlertContext);
+  const { alert, showAlert } = alertContext;
+
+  const authContext = useContext(AuthContext);
+  const { auth, msg, userLogin } = authContext;
+
+  useEffect(() => {
+    if (auth) {
+      props.history.push("/Projects");
+    }
+
+    if (msg) {
+      showAlert(msg.msg, msg.category);
+    }
+  }, [msg, auth, props.history]);
 
   //Destructuring the state component
   const { email, password } = user;
@@ -21,10 +39,20 @@ const Login = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+
+    if (email.trim() === "" || password.trim() === "") {
+      showAlert("All fields are required", "alert-error");
+      return;
+    }
+
+    userLogin({ email, password });
   };
 
   return (
     <div className="form-user">
+      {alert ? (
+        <div className={`alert ${alert.category}`}>{alert.msg}</div>
+      ) : null}
       <div className="container-form shadow-dark">
         <h1>Log in</h1>
         <form onSubmit={handleOnSubmit}>

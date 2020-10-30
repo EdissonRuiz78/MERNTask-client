@@ -21,6 +21,7 @@ const AuthState = ({ children }) => {
     auth: null,
     user: null,
     msg: null,
+    loading: true,
   };
 
   const [state, dispatch] = useReducer(AuthReducer, initialState);
@@ -61,7 +62,7 @@ const AuthState = ({ children }) => {
         payload: response.data.user,
       });
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response.data.msg);
       dispatch({
         type: WARNING_LOGIN,
       });
@@ -71,7 +72,6 @@ const AuthState = ({ children }) => {
   const userLogin = async (data) => {
     try {
       const response = await clientAxios.post("/api/auth", data);
-      console.log(response);
 
       dispatch({
         type: LOGIN,
@@ -105,6 +105,7 @@ const AuthState = ({ children }) => {
         auth: state.auth,
         user: state.user,
         msg: state.msg,
+        loading: state.loading,
         createUser,
         userLogin,
         getUser,

@@ -3,9 +3,9 @@ import {
   ADD_TASK,
   TASK_VALIDATION,
   REMOVE_TASK,
-  TASK_STATE,
   TASK_EDIT,
   TASK_UPDATE,
+  CLEAN_TASK,
 } from "../../types/";
 
 export default (state, action) => {
@@ -13,15 +13,13 @@ export default (state, action) => {
     case GET_TASKS:
       return {
         ...state,
-        projecttask: state.tasks.filter(
-          (task) => task.projectId === action.payload
-        ),
+        projecttask: action.payload,
       };
 
     case ADD_TASK:
       return {
         ...state,
-        tasks: [action.payload, ...state.tasks],
+        projecttask: [action.payload, ...state.projecttask],
         errortask: false,
       };
 
@@ -34,15 +32,16 @@ export default (state, action) => {
     case REMOVE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.taskId !== action.payload),
+        projecttask: state.projecttask.filter(
+          (task) => task._id !== action.payload
+        ),
       };
 
     case TASK_UPDATE:
-    case TASK_STATE:
       return {
         ...state,
-        tasks: state.tasks.map((task) =>
-          task.taskId === action.payload.taskId ? action.payload : task
+        projecttask: state.projecttask.map((task) =>
+          task._id === action.payload._id ? action.payload : task
         ),
         currenttask: null,
       };
@@ -51,6 +50,12 @@ export default (state, action) => {
       return {
         ...state,
         currenttask: action.payload,
+      };
+
+    case CLEAN_TASK:
+      return {
+        ...state,
+        currenttask: null,
       };
 
     default:

@@ -12,15 +12,15 @@ const Tasks = ({ task }) => {
 
   //Context from task
   const taskContext = useContext(TaskContext);
-  const { removeTask, getTasks, taskState, taskEdit } = taskContext;
+  const { removeTask, getTasks, taskEdit, taskUpdate } = taskContext;
 
   //Destructuring state from props
-  const { taskId, name, state } = task;
+  const { _id, name, state } = task;
 
   //Function to remove a task
-  const handleOnClick = (id) => {
-    removeTask(id);
-    getTasks(project.id);
+  const handleOnDelete = (id) => {
+    removeTask(id, project._id);
+    getTasks(project._id);
   };
 
   //Function to change state of task
@@ -30,7 +30,7 @@ const Tasks = ({ task }) => {
     } else {
       task.state = true;
     }
-    taskState(task);
+    taskUpdate(task);
   };
 
   //Function to edit tasks
@@ -71,9 +71,9 @@ const Tasks = ({ task }) => {
         <button
           className="btn btn-secondary"
           type="button"
-          onClick={() => handleOnClick(taskId)}
+          onClick={() => handleOnDelete(_id)}
         >
-          Delet
+          Delete
         </button>
       </div>
     </li>

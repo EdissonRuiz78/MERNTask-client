@@ -19,6 +19,7 @@ const NewAccount = (props) => {
     if (msg) {
       showAlert(msg.msg, msg.category);
     }
+    // eslint-disable-next-line
   }, [msg, auth, props.history]);
 
   //State component

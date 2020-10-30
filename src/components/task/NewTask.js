@@ -16,6 +16,7 @@ const NewTask = () => {
     errorTask,
     getTasks,
     taskUpdate,
+    cleanTask,
   } = taskContext;
 
   //Effect to edit current task
@@ -64,18 +65,17 @@ const NewTask = () => {
     //Check if we need new task o edit task
     if (currenttask === null) {
       //Adding new task
-      task.projectId = project.id;
-      task.state = false;
+      task.project = project._id;
       addTask(task);
     } else {
-      task.projectId = currenttask.projectId;
-      task.state = currenttask.state;
-      task.taskId = currenttask.taskId;
+      task._id = currenttask._id;
+      task.project = currenttask.project;
       taskUpdate(task);
+      cleanTask();
     }
 
     //Get task
-    getTasks(project.id);
+    getTasks(project._id);
 
     //Form reset
     updateTask({

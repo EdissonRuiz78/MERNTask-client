@@ -23,7 +23,7 @@ const TaskList = () => {
 
   //Function to remove a project
   const handleOnClick = () => {
-    removeProject(project.id);
+    removeProject(project._id);
   };
 
   return (
@@ -37,7 +37,7 @@ const TaskList = () => {
         ) : (
           <TransitionGroup>
             {projecttask.map((task) => (
-              <CSSTransition classNames="task" key={task.taskId} timeout={200}>
+              <CSSTransition classNames="task" key={task._id} timeout={200}>
                 <Tasks task={task} />
               </CSSTransition>
             ))}

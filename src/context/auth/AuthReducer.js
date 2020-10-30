@@ -17,6 +17,7 @@ export default (state, action) => {
         ...state,
         auth: true,
         msg: null,
+        loading: false,
       };
 
     case WARNING_REGISTER:
@@ -29,6 +30,7 @@ export default (state, action) => {
         auth: null,
         user: null,
         msg: action.payload,
+        loading: false,
       };
 
     case GET_USER:
@@ -36,6 +38,7 @@ export default (state, action) => {
         ...state,
         auth: true,
         user: action.payload,
+        loading: false,
       };
 
     default:
